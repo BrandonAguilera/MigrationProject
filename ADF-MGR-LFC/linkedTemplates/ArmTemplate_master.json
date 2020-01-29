@@ -1,0 +1,91 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ADF-MGR-LFC"
+		},
+		"ASQL_tbluser_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ASQL_tbluser'"
+		},
+		"LS_ASQL_Status_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_ASQL_Status'"
+		},
+		"LS_ASQL_TbmUserLicense_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_ASQL_TbmUserLicense'"
+		},
+		"LS_ASQL_tbkLicenseType_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_ASQL_tbkLicenseType'"
+		},
+		"LS_ASQL_tkDepartment_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_ASQL_tkDepartment'"
+		},
+		"LS_SQL_Department_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_SQL_Department'"
+		},
+		"SQL_UserLicensing_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SQL_UserLicensing'"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ASQL_tbluser_connectionString": {
+						"value": "[parameters('ASQL_tbluser_connectionString')]"
+					},
+					"LS_ASQL_Status_connectionString": {
+						"value": "[parameters('LS_ASQL_Status_connectionString')]"
+					},
+					"LS_ASQL_TbmUserLicense_connectionString": {
+						"value": "[parameters('LS_ASQL_TbmUserLicense_connectionString')]"
+					},
+					"LS_ASQL_tbkLicenseType_connectionString": {
+						"value": "[parameters('LS_ASQL_tbkLicenseType_connectionString')]"
+					},
+					"LS_ASQL_tkDepartment_connectionString": {
+						"value": "[parameters('LS_ASQL_tkDepartment_connectionString')]"
+					},
+					"LS_SQL_Department_connectionString": {
+						"value": "[parameters('LS_SQL_Department_connectionString')]"
+					},
+					"SQL_UserLicensing_connectionString": {
+						"value": "[parameters('SQL_UserLicensing_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

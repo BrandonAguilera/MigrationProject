@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ADF-MGR-LFC"
+		},
+		"ASQL_tbluser_connectionString": {
+			"value": ""
+		},
+		"LS_ASQL_Status_connectionString": {
+			"value": ""
+		},
+		"LS_ASQL_TbmUserLicense_connectionString": {
+			"value": ""
+		},
+		"LS_ASQL_tbkLicenseType_connectionString": {
+			"value": ""
+		},
+		"LS_ASQL_tkDepartment_connectionString": {
+			"value": ""
+		},
+		"LS_SQL_Department_connectionString": {
+			"value": ""
+		},
+		"SQL_UserLicensing_connectionString": {
+			"value": ""
+		}
+	}
+}
