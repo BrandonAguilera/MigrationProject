@@ -1,0 +1,10 @@
+{
+	"name": "AKV_ConnectionString",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://SecretCredential.vault.azure.net/"
+		}
+	}
+}
