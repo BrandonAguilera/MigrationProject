@@ -1,0 +1,450 @@
+{
+	"name": "DS_SQL_Product",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_Product",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "pr_code",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_lp_code",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_description",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_type",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_ca_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pr_loan_term",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "pr_pmt_adjustment",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "pr_amort_term",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pr_amort_type",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_effective_date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "pr_end_date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "pr_loan_type",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_arm_index_value",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_arm_index_margin",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_general_index",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_max_LTV",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_max_LA",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_month_to_first_adj",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_pmt_change_cap",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_life_cap",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_months_to_change",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_min_int_rate",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_LTV_for_MI",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_mip_plan",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pr_low_qual_amount",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_high_qual_amount",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_last_updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "pr_last_updated_by",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pr_lender",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_calculator",
+				"type": "char"
+			},
+			{
+				"name": "pr_hncPRODProgramID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pr_lock_flag",
+				"type": "char"
+			},
+			{
+				"name": "pr_mi_cutoff_pct",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 5
+			},
+			{
+				"name": "pr_rates_display",
+				"type": "char"
+			},
+			{
+				"name": "pr_days_per_diem",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pr_floor_type",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "pr_floor_min",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_floor_max",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_floor_offset",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_late_charge_pct",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 3
+			},
+			{
+				"name": "pr_late_charge_period",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "pr_prepay_penalty_mths",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "pr_floor_rate",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 3
+			},
+			{
+				"name": "pr_conversion_fee",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "pr_escrow_cushion_mths",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "pr_late_charge_min_amt",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "pr_late_charge_max_amt",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "pr_rounding_factor",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 3
+			},
+			{
+				"name": "pr_conv_option",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_comm_lend_product",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pr_min_heloc_advance",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 2
+			},
+			{
+				"name": "pr_const_perm_apr_option",
+				"type": "char"
+			},
+			{
+				"name": "pr_const_perm_inc_draw_period",
+				"type": "char"
+			},
+			{
+				"name": "pr_arm_index_identifier",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_heloc_draw_period",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "pr_heloc_addl_repay_period",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pr_interim_interest_prepaid",
+				"type": "char"
+			},
+			{
+				"name": "pr_median_income",
+				"type": "char"
+			},
+			{
+				"name": "pr_percent_median_income",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "pr_AUS_setting",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pr_srp",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 3
+			},
+			{
+				"name": "pr_jumbo_conforming",
+				"type": "char"
+			},
+			{
+				"name": "AuditUserId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AuditRecCreateTS",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "AuditRecUpdateTS",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "AuditType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AuditServiceFlag",
+				"type": "bit"
+			},
+			{
+				"name": "pr_prepay_penalty_type",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "pr_prepay_penalty_amount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "pr_prepay_penalty_percent",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 3
+			},
+			{
+				"name": "pr_assumable_ind",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_const_perm_closing_feature",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_index_adj_lead_days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "pr_interest_rate_rounding_type",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_interest_rate_rounding_percent",
+				"type": "decimal",
+				"precision": 7,
+				"scale": 4
+			},
+			{
+				"name": "pr_conversion_type",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_loan_delivery_arm_index",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_refi_plus",
+				"type": "varchar"
+			},
+			{
+				"name": "pr_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pr_prepaid_mi_months",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "pr_payment_frequency",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pr_biweekly_arm_payment_option",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pr_refund_mi_cushion",
+				"type": "char"
+			},
+			{
+				"name": "pr_late_charge_amount",
+				"type": "decimal",
+				"precision": 11,
+				"scale": 2
+			},
+			{
+				"name": "pr_late_charge_type",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "pr_waived_escrows",
+				"type": "char"
+			},
+			{
+				"name": "pr_offer_impounds",
+				"type": "char"
+			},
+			{
+				"name": "UcdRequiredIndicator",
+				"type": "bit"
+			},
+			{
+				"name": "pr_arm_index_description",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "product"
+		}
+	}
+}

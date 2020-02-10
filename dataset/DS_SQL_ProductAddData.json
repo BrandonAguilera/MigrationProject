@@ -1,0 +1,60 @@
+{
+	"name": "DS_SQL_ProductAddData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_ProductAddData",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "pad_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pr_code",
+				"type": "varchar"
+			},
+			{
+				"name": "pad_name",
+				"type": "varchar"
+			},
+			{
+				"name": "pad_value",
+				"type": "varchar"
+			},
+			{
+				"name": "AuditUserId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AuditRecCreateTS",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "AuditRecUpdateTS",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "AuditType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AuditServiceFlag",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "product_addl_data"
+		}
+	}
+}

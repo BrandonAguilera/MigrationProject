@@ -1,0 +1,31 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_SQL_Product",
+						"type": "DatasetReference"
+					},
+					"name": "Product"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_SQL_ProductAddData",
+						"type": "DatasetReference"
+					},
+					"name": "ProductAddData"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "MortgageType"
+				}
+			],
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tbatchSize: 2,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: '',\n\tformat: 'query') ~> Product\nsource(output(\n\t\tpad_id as integer,\n\t\tpr_code as string,\n\t\tpad_name as string,\n\t\tpad_value as string,\n\t\tAuditUserId as integer,\n\t\tAuditRecCreateTS as timestamp,\n\t\tAuditRecUpdateTS as timestamp,\n\t\tAuditType as integer,\n\t\tAuditServiceFlag as boolean\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> ProductAddData\nProduct, ProductAddData join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),\n\tjoinType:'left',\n\tbroadcast: 'none')~> MortgageType"
+		}
+	}
+}
