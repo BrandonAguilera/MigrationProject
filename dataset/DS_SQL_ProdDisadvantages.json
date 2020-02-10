@@ -1,0 +1,12 @@
+{
+	"name": "DS_SQL_ProdDisadvantages",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_ProdDisadvantages",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"name": "DS_SQL_SRPProducts",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_SRPProducts",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

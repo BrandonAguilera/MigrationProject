@@ -1,0 +1,12 @@
+{
+	"name": "DS_SQL_ProdAdvantages",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_ProdAdvantages",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

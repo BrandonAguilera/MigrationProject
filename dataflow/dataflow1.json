@@ -13,19 +13,50 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "DS_SQL_ProductAddData",
+						"referenceName": "DS_SQL_MortgageType",
 						"type": "DatasetReference"
 					},
-					"name": "ProductAddData"
+					"name": "MortgageType"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_SQL_LinType",
+						"type": "DatasetReference"
+					},
+					"name": "LienType"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_SQL_ProdAdvantages",
+						"type": "DatasetReference"
+					},
+					"name": "ProdAdvantages"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_SQL_ProdDisadvantages",
+						"type": "DatasetReference"
+					},
+					"name": "ProdDisadvantages"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_SQL_ProdBestChoice",
+						"type": "DatasetReference"
+					},
+					"name": "ProdBestChoice"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_SQL_SRPProducts",
+						"type": "DatasetReference"
+					},
+					"name": "SRPProducts"
 				}
 			],
 			"sinks": [],
-			"transformations": [
-				{
-					"name": "MortgageType"
-				}
-			],
-			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tbatchSize: 2,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: '',\n\tformat: 'query') ~> Product\nsource(output(\n\t\tpad_id as integer,\n\t\tpr_code as string,\n\t\tpad_name as string,\n\t\tpad_value as string,\n\t\tAuditUserId as integer,\n\t\tAuditRecCreateTS as timestamp,\n\t\tAuditRecUpdateTS as timestamp,\n\t\tAuditType as integer,\n\t\tAuditServiceFlag as boolean\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> ProductAddData\nProduct, ProductAddData join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),\n\tjoinType:'left',\n\tbroadcast: 'none')~> MortgageType"
+			"transformations": [],
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tbatchSize: 2,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: '',\n\tformat: 'query') ~> Product\nsource(output(\n\t\tpr_code as string,\n\t\tMortgageType as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: 'select  p.pr_code,\\n\tCase \tWHEN pad_value = \\'HELOC\\'\tTHEN \\'HELOC\\'\\n\t\t\tWHEN p.pr_loan_type = 1\t\tTHEN \\'Conventional\\'\\n\t\t\tWHEN p.pr_loan_type = 2\t\tTHEN \\'VA\\'\\n\t\t\tWHEN p.pr_loan_type = 3\t\tTHEN \\'FHA\\'\\n\t\t\tWHEN p.pr_loan_type = 4\t\tTHEN \\'USDA/Rural Housing Service\\' END AS MortgageType\\n\tfrom product P left join product_addl_data PAD on p.pr_code = PAD.pr_code\\n\twhere pad_name = \\'pr_mortgage_type\\'',\n\tformat: 'query') ~> MortgageType\nsource(output(\n\t\tpr_code as string,\n\t\tpad_name as string,\n\t\t{Lien Type} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: 'select  pr_code, pad_name, CASE WHEN pad_value IN (\\'HomeEquity\\', \\'HELOC\\') THEN \\'SECOND\\' ELSE \\'FIRST\\' END as [Lien Type]\\nfrom product_addl_data\\nwhere pad_name = \\'pr_mortgage_type\\'',\n\tformat: 'query') ~> LienType\nsource(output(\n\t\tpr_code as string,\n\t\tpad_name as string,\n\t\tpad_value as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: 'select  pr_code, pad_name, pad_value\\nfrom product_addl_data\\nwhere pad_name = \\'pr_advantages\\'',\n\tformat: 'query') ~> ProdAdvantages\nsource(output(\n\t\tpr_code as string,\n\t\tpad_name as string,\n\t\tpad_value as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: 'select  pr_code, pad_name, pad_value\\n\\n\tfrom product_addl_data\\n\twhere pad_name = \\'pr_disadvantages\\'',\n\tformat: 'query') ~> ProdDisadvantages\nsource(output(\n\t\tpr_code as string,\n\t\tpad_name as string,\n\t\tpad_value as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: 'select pr_code, pad_name, pad_value\\nFrom product_addl_data\\nwhere pad_name = \\'pr_best_choice_if\\'',\n\tformat: 'query') ~> ProdBestChoice\nsource(output(\n\t\tProductCode as string,\n\t\tProductName as string,\n\t\tPricingAdjustmentType as string,\n\t\tPricingAdjustmentName as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: 'Select   P.pr_code AS [ProductCode]\\n\t\t, P.pr_description AS [ProductName]\\n\t\t, PAD.Type AS PricingAdjustmentType\\n\t\t, PA.Name AS [PricingAdjustmentName]\\nFrom dbo.Product P (nolock) inner join dbo.ProductPricingAdjustmentAssociation PAA (nolock) ON  PAA.pr_code = P.pr_code\\nInner join dbo.PricingAdjustment PA  (nolock) ON PA.PricingAdjustmentId = PAA.PricingAdjustmentId \\nInner join dbo.PricingAdjustmentDetail PAD (nolock) ON PA.PricingAdjustmentId = PAD.PricingAdjustmentId \\nWHERE        (PAD.Type = \\'SRP\\')',\n\tformat: 'query') ~> SRPProducts"
 		}
 	}
 }

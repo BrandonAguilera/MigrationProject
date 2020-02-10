@@ -1,0 +1,12 @@
+{
+	"name": "DS_SQL_MortgageType",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_MortgageType",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
