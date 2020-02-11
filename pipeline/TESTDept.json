@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[SP_Departments123]"
+					"storedProcedureName": "[dbo].[SP_Departments_global]"
 				},
 				"linkedServiceName": {
 					"referenceName": "LS_SQL_TestDeptSP",
