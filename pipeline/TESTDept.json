@@ -1,0 +1,28 @@
+{
+	"name": "TESTDept",
+	"properties": {
+		"activities": [
+			{
+				"name": "SP_Dept",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_Departments]"
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_SQL_TestDeptSP",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": []
+	}
+}
